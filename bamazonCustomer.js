@@ -1,16 +1,7 @@
-//Then create a Node application called bamazonCustomer.js. Running this application will first display all of the items available for sale. Include the ids, names, and prices of products for sale.
-//Prompt users with two messages.(1) id of product (2) how many
-//Once the customer has placed the order, your app will check if your store has enough of the product to meet the customer's request.
-//If not, the app should log a phrase like Insufficient quantity!, and then prevent the order from going through.
-//However, if your store does have enough of the product, you should fulfill the customer's order.
-
-//This means updating the SQL database to reflect the remaining quantity.
-//Once the update goes through, show the customer the total cost of their purchase.
-
 var mysql = require("mysql");
 var inquirer = require("inquirer");
 var cTable = require("console.table");
-//Create the connection information for the sql database
+//Create the connection for information for the sql database
 var connection = mysql.createConnection({
   host: "localhost",
 
@@ -24,19 +15,17 @@ var connection = mysql.createConnection({
   password: "password",
   database: "bamazon_DB"
 });
-
-//query the database for all products in the store
+//creat a function to query the database for all products in the store
 function start() {
- //connect to the mysql server and sql database
+
 connection.connect(function(err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId + "\n");
 
-    displayItems();
-    //run the start function after the connection is made to prompt the user
+    displayItems();    
   });   
 }
-
+//write a function to display the products
 function displayItems(){
 
   var choiceArray = [];
@@ -54,7 +43,7 @@ function displayItems(){
     promptCustomer(choiceArray);
   })
 }
-
+//create a function to inquire what the customer wants to buy and the amount 
 function promptCustomer(itemChoices){
   inquirer.prompt([
     {
@@ -132,16 +121,4 @@ function continuePrompt(){
 
 start();
 
- 
-//function that prompts user for the ID of the product they would like to buy
-/*    inquirer
-      .prompt({
-        name: "idBuy",
-        type: "string",//?????????????
-        message: "What is the [ID] of the product you would like to buy?",
-        choices: ["ID"]
-      })
-
-
-    */
 
