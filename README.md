@@ -1,2 +1,2 @@
 # Node.js-MySQL-HW-12
-![Screenshot](screenshot.gif)
+![Screenshot](./Screenshot.gif)
